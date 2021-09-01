@@ -5,6 +5,7 @@ import { ApiSystem } from './ApiSystem'
 import { ApiUser } from './ApiUser'
 import { ApiValidationField } from './ApiValidationField'
 import { ApiOrder } from './ApiOrder'
+import { ApiControls } from './ApiControls'
 import { ApiBusiness } from './ApiBusiness'
 import { ApiDriversGroups } from './ApiDriversGroups'
 import { ApiConfig } from './ApiConfig'
@@ -92,6 +93,10 @@ export class Ordering {
 
   orders (orderId: number = null) {
     return new ApiOrder(this, orderId)
+  }
+
+  controls (orderId: number = null) {
+    return new ApiControls(this, orderId)
   }
 
   driversgroups () {
