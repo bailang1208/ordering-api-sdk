@@ -4,6 +4,7 @@ import { RequestOptionsProps } from '../interfaces/RequestOptionsProps'
 import { User, UserProps } from '../models/User'
 import { ApiAddress } from './ApiAddress'
 import { ApiBaseInterface, ApiBase } from './ApiBase'
+import { ApiDriverLocations } from './ApiDriverLocations'
 
 interface CredentialsProps {
   email?: string
@@ -197,4 +198,16 @@ export class ApiUser extends ApiBase implements ApiBaseInterface {
     }
     return new ApiAddress(this.ordering, this.userId, addressId)
   }
+
+    /**
+   * Return the api driver locations
+   * @param {number} addressId Address id is optional
+   */
+  driverLocations()  {
+    if (!this.userId) {
+      throw new Error('`userId` is require to use API addresses. Example: ordering.users(userId).driverLocations().get()')
+    }
+    return new ApiDriverLocations(this.ordering, this.userId)
+  }
+
 }
