@@ -37,6 +37,19 @@ export class ApiCart extends ApiBase implements ApiBaseInterface {
   }
 
   /**
+   * Get a cart stores if cartId is set else get all
+   * @param {RequestOptionsProps} options Params, headers and other options
+   */
+  async getBusinesses (options: RequestOptionsProps = {}) {
+    if (this.cartId) {
+      throw new Error('The `cartId` is required to use ordering.carts(cartId).confirm(options).')
+    }
+    const url = `/carts/${this.cartId}/businesses`
+    const response: ApiResponse = await this.makeRequest('GET', url, undefined, Cart, options)
+    return response
+  }
+
+  /**
    * set a cart if cartId is set else get all
    * @param {RequestOptionsProps} options Params, headers and other options
    */
